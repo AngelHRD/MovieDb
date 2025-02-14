@@ -1,4 +1,16 @@
 <script>
+	import { searchQuery } from '$lib/stores';
+	import { goto } from '$app/navigation';
+
+	let query = '';
+
+	function onSearch() {
+		if (query.trim() !== '') {
+			searchQuery.set(query);
+			goto(`/search/${query}`);
+		}
+	}
+
 	let isOpen = false;
 	let darkMode = false;
 
@@ -20,21 +32,23 @@
 				<a href="/" class="text-xl font-bold text-white">Movie-DB</a>
 			</div>
 
-			<!-- Barre de recherche  -->
+			<!-- Barre de recherche -->
 			<div class="hidden flex-1 justify-center px-4 md:flex">
 				<div class="relative w-full max-w-md">
 					<input
 						type="text"
-						placeholder="Recherche..."
+						placeholder="Rechercher un mot-clé..."
 						class="w-full rounded-md bg-zinc-700 py-2 pr-10 pl-4 text-white placeholder-zinc-400 focus:bg-zinc-600 focus:outline-none"
+						bind:value={query}
+						on:keydown={(e) => e.key === 'Enter' && onSearch()}
 					/>
-					<div class=" absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3">
-						<svg
-							class="h-5 w-5 text-zinc-400"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
+					<button
+						type="button"
+						class="absolute inset-y-0 right-0 flex items-center pr-3 text-zinc-400 focus:outline-none"
+						on:click={onSearch}
+						aria-label="Rechercher"
+					>
+						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -42,13 +56,12 @@
 								d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
 							/>
 						</svg>
-					</div>
+					</button>
 				</div>
 			</div>
 
 			<!-- Menu et Dark Mode Toggle -->
 			<div class="flex items-center">
-				<!-- Liens Desktop -->
 				<div class="hidden items-center space-x-4 md:flex">
 					<a
 						href="/"
@@ -75,7 +88,7 @@
 					class="ml-4 text-zinc-300 hover:text-white focus:outline-none"
 				>
 					{#if darkMode}
-						<!-- Icône soleil -->
+						<!-- Dark Icon -->
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							class="h-6 w-6 cursor-pointer"
@@ -90,7 +103,7 @@
 							/>
 						</svg>
 					{:else}
-						<!-- Icône lune (mode sombre) -->
+						<!-- Light Icon -->
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							class="h-6 w-6 cursor-pointer"

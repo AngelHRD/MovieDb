@@ -1,10 +1,9 @@
 <script>
-	import MovieCard from '../../components/MovieCard.svelte';
-	import Pagination from '../../components/Pagination.svelte';
+	import MovieCard from '$components/MovieCard.svelte';
+	import Pagination from '$components/Pagination.svelte';
 
 	export let data = undefined;
 	console.log(data);
-
 	const { series, currentPage, totalPages } = data;
 </script>
 

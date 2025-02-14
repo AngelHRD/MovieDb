@@ -1,5 +1,5 @@
 <script>
-	import DetailsCard from '../../../components/DetailsCard.svelte';
+	import DetailsCard from '$components/DetailsCard.svelte';
 	export let data = undefined;
 
 	// Détection automatique : film ou série ?

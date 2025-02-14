@@ -3,6 +3,8 @@
 	import MovieCard from '../components/MovieCard.svelte';
 
 	export let data = undefined;
+	console.log(data);
+
 	const { movies, currentPage, totalPages } = data;
 </script>
 
@@ -16,7 +18,7 @@
 
 <Pagination {currentPage} {totalPages} />
 
-<div class="container mx-auto mt-8 px-6">
+<div class="container mx-auto mt-5 px-6">
 	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 		{#each movies as movie}
 			<MovieCard {movie} />
