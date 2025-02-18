@@ -1,9 +1,9 @@
-import { searchMovies } from '$lib/api';
+import { getMovieById } from '$lib/api';
 
 export async function load({ fetch, params }) {
 	const slug = params.slug;
-	const data = await searchMovies(fetch, slug);
-	console.log(data);
+	const id = slug.split('-').pop();
+	const data = await getMovieById(fetch, id);
 
-	return { movies: data?.results || [] };
+	return { movie: data || [] };
 }

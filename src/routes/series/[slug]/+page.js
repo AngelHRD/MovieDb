@@ -1,13 +1,9 @@
-import { searchSeries } from '$lib/api';
+import { getSeriesById } from '$lib/api';
 
 export async function load({ fetch, params }) {
 	const slug = params.slug;
-	const data = await searchSeries(fetch, slug);
-	console.log(data);
+	const id = slug.split('-').pop();
+	const data = await getSeriesById(fetch, id);
 
-	return {
-		series: data?.results || [],
-		currentPage: data?.page || 1,
-		totalPages: data?.total_pages || 1
-	};
+	return { serie: data || [] };
 }

@@ -1,36 +1,29 @@
 <script>
 	import StarsPopularity from './StarsPopularity.svelte';
+	import { createSlug } from '$utils/createSlug';
 
-	export let item = undefined;
-
-	function createSlug(title) {
-		if (!title) return 'inconnu';
-		return title
-			.normalize('NFKD')
-			.toLowerCase()
-			.replace(/\s+/g, '-')
-			.replace(/[^\p{L}\p{N}-]+/gu, '')
-			.replace(/-+/g, '-')
-			.replace(/^-+|-+$/g, '');
-	}
+	export let data = {};
+	const media = data.movie || data.serie;
+	console.log('detailcard', media);
 
 	// Detect if movies or series
-	const isMovie = item?.title !== undefined;
-	const title = item?.title ?? item?.name ?? 'Titre inconnu';
-	const originalTitle = item?.original_title ?? item?.original_name ?? 'Titre original inconnu';
-	const overview = item?.overview ?? 'Aucune description disponible.';
-	const releaseDate = item?.release_date ?? item?.first_air_date ?? 'Date inconnue';
-	const poster = item?.poster_path
-		? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-		: '/placeholder.jpg';
+	const isMovie = media?.title !== undefined;
+	const mediatitle = media?.title ?? media?.name ?? 'Titre inconnu';
+	const originalTitle = media?.original_title ?? media?.original_name ?? 'Titre original inconnu';
+	const overview = media?.overview ?? 'Aucune description disponible.';
+	const releaseDate = media?.release_date ?? media?.first_air_date ?? 'Date inconnue';
+	const poster = media?.poster_path
+		? `https://image.tmdb.org/t/p/w500${media.poster_path}`
+		: 'https://placehold.co/400x400';
+	const popularity = media?.popularity ?? 0;
 </script>
 
-{#if item}
+{#if data}
 	<div class="container mx-auto mt-5 grid grid-cols-1 gap-4 px-4 text-white md:grid-cols-2">
 		<div class="mt-10 flex items-center justify-center">
 			<img
 				src={poster}
-				alt={title}
+				alt={mediatitle}
 				class="max-h-full w-[400px] max-w-full rounded-lg object-cover shadow-lg"
 			/>
 		</div>
@@ -39,7 +32,7 @@
 		<div>
 			<div class="mt-10">
 				<h2 class="text-center text-4xl font-black text-white">
-					{title} <span class="text-xl text-zinc-300">({originalTitle})</span>
+					{mediatitle} <span class="text-xl text-zinc-300">({originalTitle})</span>
 				</h2>
 			</div>
 
@@ -57,7 +50,7 @@
 
 			<div class="mt-7">
 				<h3 class="text-lg font-semibold">
-					Popularité : <StarsPopularity popularity={item.popularity} />
+					Popularité : <StarsPopularity {popularity} />
 				</h3>
 			</div>
 		</div>

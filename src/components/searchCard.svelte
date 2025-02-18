@@ -40,7 +40,7 @@
 			<!-- Bouton d'action -->
 			<div class="mt-4">
 				<a
-					href="#"
+					href="/"
 					class="inline-block rounded-md bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-600"
 				>
 					Découvrir

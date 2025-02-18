@@ -2,9 +2,8 @@
 	import MovieCard from '$components/MovieCard.svelte';
 	import Pagination from '$components/Pagination.svelte';
 
-	export let data = undefined;
-	console.log(data);
-	const { series, currentPage, totalPages } = data;
+	export let data = { series: [], currentPage: 1, totalPages: 1 };
+	let { series, currentPage, totalPages } = data;
 </script>
 
 <svelte:head>
@@ -17,10 +16,10 @@
 
 <Pagination {currentPage} {totalPages} />
 
-<div class="container mx-auto mt-5 px-4">
-	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-		{#each series as serie}
-			<MovieCard {serie} />
+<div class="container mx-auto mt-5 px-6">
+	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+		{#each series as data}
+			<MovieCard {data} />
 		{/each}
 	</div>
 </div>

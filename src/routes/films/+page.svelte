@@ -2,13 +2,12 @@
 	import MovieCard from '$components/MovieCard.svelte';
 	import Pagination from '$components/Pagination.svelte';
 
-	export let data = undefined;
-	console.log(data);
-	const { movies, currentPage, totalPages } = data;
+	export let data = { movies: [], currentPage: 1, totalPages: 1 };
+	let { movies, currentPage, totalPages } = data;
 </script>
 
 <svelte:head>
-	<title>Movie-DB | Séries</title>
+	<title>Movie-DB | Films</title>
 </svelte:head>
 
 <div>
@@ -17,10 +16,10 @@
 
 <Pagination {currentPage} {totalPages} />
 
-<div class="container mx-auto mt-5 px-4">
-	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-		{#each movies as movie}
-			<MovieCard {movie} />
+<div class="container mx-auto mt-5 px-6">
+	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+		{#each movies as data}
+			<MovieCard {data} />
 		{/each}
 	</div>
 </div>

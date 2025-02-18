@@ -5,8 +5,6 @@
 	const search = data?.search?.results ?? [];
 	const currentPage = data?.currentPage ?? 1;
 	const totalPages = data?.totalPages ?? 1;
-
-	console.log('search', search);
 </script>
 
 <h2 class="text-white">Résultats de recherche :</h2>

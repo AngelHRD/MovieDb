@@ -1,9 +1,13 @@
 <script>
 	import DetailsCard from '$components/DetailsCard.svelte';
-	export let data = undefined;
+	export let data = {};
 
-	// Détection automatique : film ou série ?
-	const item = data?.movies?.[0] ?? data?.series?.[0];
+	// Check if there is at least one movie
+	const title = data.serie ?? { title: 'Film not found' };
 </script>
 
-<DetailsCard {item} />
+<DetailsCard {data} />
+
+<svelte:head>
+	<title>Movie-DB | Films | {title}</title>
+</svelte:head>

@@ -26,6 +26,7 @@ async function fetchFromAPI(fetch, endpoint, params = {}) {
 export function getTopRatedMovies(fetch, page = 1) {
 	return fetchFromAPI(fetch, 'movie/top_rated', { page });
 }
+
 // Récupérer les films populaires
 export function getPopularMovies(fetch, page = 1) {
 	return fetchFromAPI(fetch, 'movie/popular', { page });
@@ -50,7 +51,16 @@ export function searchSeries(fetch, query) {
 export function getDetails(fetch, type, id) {
 	return fetchFromAPI(fetch, `${type}/${id}`);
 }
+
 // Rechercher des films , séries et personnes
 export function searchMulti(fetch, query) {
 	return fetchFromAPI(fetch, 'search/multi', { query });
+}
+
+export function getMovieById(fetch, id) {
+	return fetchFromAPI(fetch, `movie/${id}`);
+}
+
+export function getSeriesById(fetch, id) {
+	return fetchFromAPI(fetch, `tv/${id}`);
 }

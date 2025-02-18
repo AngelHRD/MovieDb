@@ -5,7 +5,7 @@ export async function load({ fetch, url }) {
 	const data = await getPopularMovies(fetch, page);
 
 	return {
-		movies: data?.results || [],
+		movies: data.results || [],
 		currentPage: data?.page || 1,
 		totalPages: data?.total_pages || 1
 	};
