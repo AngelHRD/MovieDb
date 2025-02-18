@@ -1,5 +1,7 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+console.log('API_KEY:', API_KEY);
+
 const BASE = 'https://api.themoviedb.org/3/';
 
 const headers = {

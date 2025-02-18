@@ -3,11 +3,9 @@ import adapter from '@sveltejs/adapter-netlify';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter({
-			// options de l'adaptateur ici si nécessaire
-		}),
+		adapter: adapter({}),
 		prerender: {
-			entries: ['*'] // Ceci prérendrera toutes les routes
+			entries: ['*']
 		},
 		alias: {
 			$lib: './src/lib',
