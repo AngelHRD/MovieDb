@@ -3,11 +3,12 @@ import adapter from '@sveltejs/adapter-netlify';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter({ edge: false, split: false }),
-
+		adapter: adapter({
+			// options de l'adaptateur ici si nécessaire
+		}),
+		prerender: {
+			entries: ['*'] // Ceci prérendrera toutes les routes
+		},
 		alias: {
 			$lib: './src/lib',
 			$components: './src/components',
